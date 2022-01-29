@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     # Game over message
     Game_Over_font = pygame.font.SysFont("Helvetica", 40)
-    Game_Over_surface = Game_Over_font.render("GAME OVER", False, "Black")
+    Game_Over_surface = Game_Over_font.render("Game Over", False, "Black")
     Game_Over_rect = Game_Over_surface.get_rect(center=(400, 200))
     message_font = pygame.font.SysFont("Verdana", 20)
     message_surface = message_font.render("to play again press Space", False, "Grey")
