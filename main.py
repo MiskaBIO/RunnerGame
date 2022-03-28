@@ -15,10 +15,14 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(midbottom=(80, 300))
         self.gravity = 0
 
+        self.jump_sound = pygame.mixer.Sound("audio/audio_jump.mp3")
+        self.jump_sound.set_volume(0.6)
+
     def player_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.rect.bottom == 300:
             self.gravity = -20
+            self.jump_sound.play()
 
     def apply_gravity(self):
         self.gravity += 1
@@ -49,7 +53,7 @@ class Obstacle(pygame.sprite.Sprite):
             fly_1 = pygame.image.load("images/flyFly1.png").convert_alpha()
             fly_2 = pygame.image.load("images/flyFly2.png").convert_alpha()
             self.frames = [fly_1, fly_2]
-            y_pos = 210
+            y_pos = 200
         else:
             snail_1 = pygame.image.load("images/snailWalk1.png").convert_alpha()
             snail_2 = pygame.image.load("images/snailWalk2.png").convert_alpha()
@@ -101,7 +105,10 @@ if __name__ == '__main__':
     game_active = False
     start_time = 0
     score = 0
-
+    bg_Music = pygame.mixer.Sound("Audio/music.wav")
+    bg_Music.set_volume(0.2)
+    bg_Music.play(loops=-1)
+    
     #Groups
     player = pygame.sprite.GroupSingle()
     player.add(Player())
